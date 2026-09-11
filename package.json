@@ -1,0 +1,16 @@
+{
+  "name": "campusvoice-root",
+  "version": "1.0.0",
+  "description": "CampusVoice - Closed-Loop Feedback-to-Resolution Platform for Residential Campuses",
+  "private": true,
+  "scripts": {
+    "install-all": "npm install && npm install --prefix server && npm install --prefix client",
+    "seed": "npm run seed --prefix server",
+    "server": "npm run start --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { AuthContext, DEMO_PRESETS } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 import NotificationBell from './NotificationBell';
-import { LogOut, Menu, X, ShieldAlert, UserCheck, Utensils, GraduationCap, Activity } from 'lucide-react';
+import { LogOut, Menu, X, ShieldAlert, UserCheck, Utensils, GraduationCap, Activity, Sparkles } from 'lucide-react';
 
 export const Navbar = () => {
   const { user, login, logout } = useContext(AuthContext);
@@ -23,65 +23,62 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="relative z-50 px-4 md:px-10 py-4 bg-black border-b border-neutral-900/80">
+    <header className="relative z-50 px-6 md:px-8 py-5 border-b border-white/10 backdrop-blur-md bg-black/40">
       <div className="max-w-7xl mx-auto flex flex-col gap-3">
         
         {/* Top Navbar Row */}
-        <div className="grid grid-cols-2 md:grid-cols-[auto_1fr_auto] items-center gap-4">
+        <div className="flex items-center justify-between gap-4">
           
-          {/* Left: Brand Logo */}
-          <Link to="/" className="inline-flex items-center gap-2.5 justify-self-start font-semibold text-lg tracking-tight text-white group">
-            <svg className="w-6 h-6 text-white group-hover:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
-              <g transform="rotate(-30 12 12)">
-                <circle cx="7.3" cy="3.2" r="1.45" />
-                <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8" />
-                <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8" />
-                <circle cx="16.7" cy="20.8" r="1.45" />
-              </g>
-            </svg>
-            <span>CampusVoice<span className="font-normal text-neutral-400">.ai</span></span>
+          {/* Left: Brand Logo (Prompt Spec: Instrument Serif, text-3xl) */}
+          <Link to="/" className="inline-flex items-center gap-2 group">
+            <span 
+              className="text-2xl sm:text-3xl tracking-tight text-white font-normal"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              CampusVoice<sup className="text-xs text-sky-400 font-sans ml-0.5">®</sup>
+            </span>
           </Link>
 
-          {/* Center: Direct Navigation Liquid-Metal Pills (Desktop) */}
-          <nav className="hidden md:flex items-center gap-2 justify-self-center">
+          {/* Center: Nav links (Hidden on mobile, md:flex) */}
+          <nav className="hidden md:flex items-center gap-6">
             <Link 
               to="/" 
-              className={`liquid-pill ${location.pathname === '/' ? 'border-white text-white font-semibold' : ''}`}
+              className={`text-sm transition-colors ${location.pathname === '/' ? 'text-white font-medium' : 'text-neutral-400 hover:text-white'}`}
             >
-              Benefits
+              Home
             </Link>
 
             <Link 
               to="/transparency" 
-              className={`liquid-pill ${location.pathname === '/transparency' ? 'border-emerald-500 text-emerald-400 font-semibold' : ''}`}
+              className={`text-sm transition-colors ${location.pathname === '/transparency' ? 'text-emerald-400 font-medium' : 'text-neutral-400 hover:text-white'}`}
             >
-              <Activity className="w-3.5 h-3.5 mr-1 text-emerald-400 inline" /> Public Trust
+              Public Trust
             </Link>
 
             <button
               onClick={() => handleNavClick('/student', 'student1@lpu.in')}
-              className={`liquid-pill ${location.pathname === '/student' ? 'border-blue-500 text-blue-400 font-semibold' : ''}`}
+              className={`text-sm transition-colors ${location.pathname === '/student' ? 'text-sky-400 font-medium' : 'text-neutral-400 hover:text-white'}`}
             >
               Student Portal
             </button>
 
             <button
               onClick={() => handleNavClick('/staff', 'warden.bh1@lpu.in')}
-              className={`liquid-pill ${location.pathname === '/staff' ? 'border-amber-500 text-amber-400 font-semibold' : ''}`}
+              className={`text-sm transition-colors ${location.pathname === '/staff' ? 'text-amber-400 font-medium' : 'text-neutral-400 hover:text-white'}`}
             >
               Warden Portal
             </button>
 
             <button
               onClick={() => handleNavClick('/admin', 'admin@lpu.in')}
-              className={`liquid-pill ${location.pathname === '/admin' ? 'border-purple-500 text-purple-400 font-semibold' : ''}`}
+              className={`text-sm transition-colors ${location.pathname === '/admin' ? 'text-purple-400 font-medium' : 'text-neutral-400 hover:text-white'}`}
             >
               Gap Analytics
             </button>
           </nav>
 
-          {/* Right: User Profile & Actions */}
-          <div className="flex items-center gap-3 justify-self-end">
+          {/* Right: CTA & User Actions */}
+          <div className="flex items-center gap-3">
             {user ? (
               <div className="flex items-center gap-2">
                 <NotificationBell />
@@ -94,7 +91,7 @@ export const Navbar = () => {
                     logout();
                     navigate('/');
                   }}
-                  className="p-2 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors text-xs flex items-center gap-1"
+                  className="liquid-glass rounded-full px-3.5 py-1.5 text-xs text-neutral-300 hover:text-white hover:scale-[1.03] transition-all flex items-center gap-1"
                   title="Sign Out"
                 >
                   <LogOut className="w-3.5 h-3.5" />
@@ -106,8 +103,9 @@ export const Navbar = () => {
                 <Link to="/login" className="px-3.5 py-2 rounded-lg text-xs font-medium text-neutral-300 hover:text-white transition-colors">
                   Sign In
                 </Link>
-                <Link to="/register" className="btn-vesper-solid text-xs">
-                  Register
+                {/* Prompt Spec CTA Button */}
+                <Link to="/student" className="liquid-glass rounded-full px-6 py-2.5 text-sm text-white hover:scale-[1.03] transition-transform">
+                  Begin Journey
                 </Link>
               </div>
             )}
@@ -115,7 +113,7 @@ export const Navbar = () => {
             {/* Mobile Burger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-neutral-900 border border-neutral-800 text-white"
+              className="md:hidden p-2 rounded-lg bg-white/5 border border-white/10 text-white"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -123,63 +121,64 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* 1-Click Role Preset Switcher Toolbar */}
-        <div className="bg-neutral-950/90 border border-neutral-900 rounded-xl px-3 py-1.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+        {/* 1-Click Role Switcher Toolbar */}
+        <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl px-3 py-1.5 flex flex-wrap items-center justify-between gap-2 text-xs">
           <span className="text-[11px] text-neutral-400 font-mono flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <strong className="text-white font-semibold">1-Click Examiner Role Switcher:</strong>
           </span>
 
           <div className="flex flex-wrap items-center gap-1.5">
             <button
               onClick={() => handleNavClick('/student', 'student1@lpu.in')}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-semibold flex items-center gap-1 transition-all ${
-                user?.role === 'student' ? 'bg-blue-600 text-white' : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 border border-neutral-800'
+              className={`liquid-glass rounded-full px-3 py-1 text-[11px] font-medium flex items-center gap-1 transition-all ${
+                user?.role === 'student' ? 'text-sky-300 font-semibold border-sky-400/50' : 'text-neutral-300 hover:text-white'
               }`}
             >
-              <GraduationCap className="w-3 h-3" /> Student View
+              <GraduationCap className="w-3 h-3 text-sky-400" /> Student View
             </button>
 
             <button
               onClick={() => handleNavClick('/staff', 'warden.bh1@lpu.in')}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-semibold flex items-center gap-1 transition-all ${
-                user?.email === 'warden.bh1@lpu.in' ? 'bg-amber-600 text-white' : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 border border-neutral-800'
+              className={`liquid-glass rounded-full px-3 py-1 text-[11px] font-medium flex items-center gap-1 transition-all ${
+                user?.email === 'warden.bh1@lpu.in' ? 'text-amber-300 font-semibold border-amber-400/50' : 'text-neutral-300 hover:text-white'
               }`}
             >
-              <UserCheck className="w-3 h-3" /> Warden BH-1
+              <UserCheck className="w-3 h-3 text-amber-400" /> Warden BH-1
             </button>
 
             <button
               onClick={() => handleNavClick('/staff', 'mess.alpha@lpu.in')}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-semibold flex items-center gap-1 transition-all ${
-                user?.email === 'mess.alpha@lpu.in' ? 'bg-emerald-600 text-white' : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 border border-neutral-800'
+              className={`liquid-glass rounded-full px-3 py-1 text-[11px] font-medium flex items-center gap-1 transition-all ${
+                user?.email === 'mess.alpha@lpu.in' ? 'text-emerald-300 font-semibold border-emerald-400/50' : 'text-neutral-300 hover:text-white'
               }`}
             >
-              <Utensils className="w-3 h-3" /> Mess Staff
+              <Utensils className="w-3 h-3 text-emerald-400" /> Mess Staff
             </button>
 
             <button
               onClick={() => handleNavClick('/admin', 'admin@lpu.in')}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-semibold flex items-center gap-1 transition-all ${
-                user?.role === 'admin' ? 'bg-purple-600 text-white' : 'bg-neutral-900 text-neutral-300 hover:bg-neutral-800 border border-neutral-800'
+              className={`liquid-glass rounded-full px-3 py-1 text-[11px] font-medium flex items-center gap-1 transition-all ${
+                user?.role === 'admin' ? 'text-purple-300 font-semibold border-purple-400/50' : 'text-neutral-300 hover:text-white'
               }`}
             >
-              <ShieldAlert className="w-3 h-3" /> Admin Gap Visualizer
+              <ShieldAlert className="w-3 h-3 text-purple-400" /> Admin Gap Visualizer
             </button>
           </div>
         </div>
+
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-24 z-40 bg-black/95 backdrop-blur-2xl p-6 flex flex-col gap-3">
           <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium text-white py-2 border-b border-neutral-900">
-            Benefits / Home
+            Home
           </Link>
           <Link to="/transparency" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium text-emerald-400 py-2 border-b border-neutral-900">
             Public Trust Layer
           </Link>
-          <button onClick={() => handleNavClick('/student', 'student1@lpu.in')} className="text-left text-base font-medium text-blue-400 py-2 border-b border-neutral-900">
+          <button onClick={() => handleNavClick('/student', 'student1@lpu.in')} className="text-left text-base font-medium text-sky-400 py-2 border-b border-neutral-900">
             Student Portal
           </button>
           <button onClick={() => handleNavClick('/staff', 'warden.bh1@lpu.in')} className="text-left text-base font-medium text-amber-400 py-2 border-b border-neutral-900">

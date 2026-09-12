@@ -1,76 +1,94 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, ArrowRight, Activity, Layers, CheckCircle2, RotateCcw, AlertTriangle, Trophy } from 'lucide-react';
+import { ArrowRight, Trophy, Activity, CheckCircle2, AlertTriangle, RotateCcw, ShieldCheck, Layers, Sparkles } from 'lucide-react';
+import Hostel3DCanvas from '../components/Hostel3DCanvas';
 
 export const LandingPage = () => {
   return (
-    <div className="relative min-h-[calc(100vh-110px)] bg-black text-white flex flex-col justify-between overflow-hidden">
+    <div className="relative min-h-screen bg-[hsl(201,100%,13%)] text-white flex flex-col justify-between overflow-hidden">
       
-      {/* Background scrim & subtle radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900/40 via-black to-black pointer-events-none" />
+      {/* Fullscreen Video Background (Prompt Specification) */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-40 mix-blend-screen pointer-events-none"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+      />
 
-      {/* Main Hero Copy */}
-      <main className="relative z-10 max-w-5xl mx-auto px-6 pt-10 pb-16 text-center flex flex-col items-center justify-center my-auto space-y-8">
+      {/* Hero Section (Prompt Specification) */}
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-20 text-center flex flex-col items-center justify-center my-auto">
         
         {/* Badge */}
-        <div className="appear-pop inline-flex items-center gap-2 px-4 py-2 rounded-md border border-neutral-800 bg-gradient-to-r from-neutral-800 via-neutral-900 to-black text-neutral-200 text-xs font-normal tracking-tight shadow-lg">
-          <svg className="w-4 h-4 text-white drop-shadow-[0_0_3px_rgba(255,255,255,0.45)]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2.6C12.55 2.6 12.88 3.15 13.08 4.7c.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6Z" />
-          </svg>
-          <span>Campus Operational Feedback Infrastructure</span>
+        <div className="animate-fade-rise inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass text-sky-200 text-xs font-mono tracking-tight mb-8">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+          <span>Campus Operational Feedback & Resolution Infrastructure</span>
         </div>
 
-        {/* H1 Headline with Instrument Serif Italic highlight */}
-        <h1 className="appear-scale text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight leading-[1.12] text-white">
-          Closed-Loop <em className="font-serif italic font-normal text-neutral-400 font-light">Feedback-to-Action</em> for Residential Campuses.
+        {/* H1 Headline (Prompt Specification) */}
+        <h1 
+          className="animate-fade-rise text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] max-w-7xl font-normal text-white"
+          style={{ fontFamily: "'Instrument Serif', serif" }}
+        >
+          Where campus <em className="not-italic text-neutral-400">voices rise</em> <em className="not-italic text-neutral-400">through the silence.</em>
         </h1>
 
-        {/* Lede paragraph */}
-        <p className="appear-soft max-w-xl text-base sm:text-lg text-neutral-400 font-normal leading-relaxed tracking-tight">
-          Eliminate the feedback gap between student complaints and warden resolution. Real-time SLA tracking, fake-resolution detection, and public trust metrics.
+        {/* Subtext (Prompt Specification) */}
+        <p className="animate-fade-rise-delay text-neutral-400 text-base sm:text-lg max-w-2xl mt-8 leading-relaxed font-sans">
+          We're designing tools for deep thinkers, bold creators, and quiet rebels. Closed-loop feedback-to-resolution platform eliminating the gap between student complaints and warden resolution.
         </p>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <Link to="/student" className="btn-vesper-solid flex items-center gap-2">
-            Explore Student Portal <ArrowRight className="w-4 h-4" />
+        {/* CTA Buttons (Prompt Specification) */}
+        <div className="animate-fade-rise-delay-2 flex flex-wrap items-center justify-center gap-4 mt-10">
+          <Link 
+            to="/student" 
+            className="liquid-glass rounded-full px-12 py-4 text-base font-semibold text-white hover:scale-[1.03] transition-transform cursor-pointer flex items-center gap-2"
+          >
+            Begin Journey <ArrowRight className="w-4 h-4 text-sky-400" />
           </Link>
-          <Link to="/admin" className="btn-vesper-ghost flex items-center gap-2">
-            <Trophy className="w-4 h-4 text-purple-400" /> Admin Gap Visualizer
-          </Link>
-          <Link to="/transparency" className="btn-vesper-ghost flex items-center gap-2">
+
+          <Link 
+            to="/transparency" 
+            className="liquid-glass rounded-full px-8 py-4 text-base font-medium text-emerald-300 hover:scale-[1.03] transition-transform cursor-pointer flex items-center gap-2"
+          >
             <Activity className="w-4 h-4 text-emerald-400" /> Public Trust Live Feed
           </Link>
         </div>
 
-        {/* Benefits Cards Section */}
-        <section id="benefits" className="w-full pt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-          <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-5 shadow-lg">
-            <div className="w-8 h-8 rounded-lg bg-emerald-950 text-emerald-400 flex items-center justify-center mb-3 border border-emerald-800">
-              <CheckCircle2 className="w-4 h-4" />
+        {/* Interactive 3D WebGL Hostel Block Inspector Canvas */}
+        <div className="w-full max-w-5xl mt-16 animate-fade-rise-delay-2">
+          <Hostel3DCanvas />
+        </div>
+
+        {/* Benefits Grid */}
+        <section id="benefits" className="w-full pt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+          <div className="liquid-glass rounded-2xl p-6 shadow-2xl">
+            <div className="w-10 h-10 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mb-4">
+              <CheckCircle2 className="w-5 h-5" />
             </div>
-            <h3 className="text-sm font-semibold text-white">Closed-Loop Accountability</h3>
-            <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+            <h3 className="text-base font-semibold text-white">Closed-Loop Accountability</h3>
+            <p className="text-xs text-neutral-400 mt-2 leading-relaxed">
               Tickets are only closed when the student rates the fix as Satisfied. Unsatisfied ratings auto-reopen the ticket.
             </p>
           </div>
 
-          <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-5 shadow-lg">
-            <div className="w-8 h-8 rounded-lg bg-red-950 text-red-400 flex items-center justify-center mb-3 border border-red-800">
-              <AlertTriangle className="w-4 h-4" />
+          <div className="liquid-glass rounded-2xl p-6 shadow-2xl">
+            <div className="w-10 h-10 rounded-xl bg-red-950/80 border border-red-500/40 text-red-400 flex items-center justify-center mb-4">
+              <AlertTriangle className="w-5 h-5" />
             </div>
-            <h3 className="text-sm font-semibold text-white">Automated SLA Escalations</h3>
-            <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+            <h3 className="text-base font-semibold text-white">Automated SLA Escalations</h3>
+            <p className="text-xs text-neutral-400 mt-2 leading-relaxed">
               24h acknowledgment and 72h resolution windows with automatic breach flagging and Chief Warden alerts.
             </p>
           </div>
 
-          <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-5 shadow-lg">
-            <div className="w-8 h-8 rounded-lg bg-purple-950 text-purple-400 flex items-center justify-center mb-3 border border-purple-800">
-              <RotateCcw className="w-4 h-4" />
+          <div className="liquid-glass rounded-2xl p-6 shadow-2xl">
+            <div className="w-10 h-10 rounded-xl bg-purple-950/80 border border-purple-500/40 text-purple-400 flex items-center justify-center mb-4">
+              <RotateCcw className="w-5 h-5" />
             </div>
-            <h3 className="text-sm font-semibold text-white">Fake Resolution Visualizer</h3>
-            <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+            <h3 className="text-base font-semibold text-white">Fake Resolution Visualizer</h3>
+            <p className="text-xs text-neutral-400 mt-2 leading-relaxed">
               Exposes operational gaps and reopened ticket rates per block & mess unit to stop prematurely closed complaints.
             </p>
           </div>
@@ -78,35 +96,36 @@ export const LandingPage = () => {
 
       </main>
 
-      {/* 3 Stats Footer Bar (Vesper.ai Specification) */}
-      <footer className="relative z-10 border-t border-neutral-900/80 bg-black/80 backdrop-blur-md px-6 py-6 md:px-16">
+      {/* Footer Stats Bar */}
+      <footer className="relative z-10 border-t border-white/10 bg-black/40 backdrop-blur-md px-6 py-6 md:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-neutral-300">
           
-          <div className="appear-soft inline-flex items-center gap-3 font-medium tracking-tight">
-            <div className="relative w-7 h-7 flex items-center justify-center rounded bg-neutral-900 border border-neutral-800">
+          <div className="inline-flex items-center gap-3 font-medium tracking-tight">
+            <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
               <Layers className="w-4 h-4 text-white" />
             </div>
             <span><strong className="text-white font-semibold">1,420+</strong> complaints resolved within SLA</span>
           </div>
 
-          <div className="appear-soft inline-flex items-center gap-3 font-medium tracking-tight">
-            <div className="w-7 h-7 rounded bg-white flex items-center justify-center text-black">
-              <ShieldCheck className="w-4 h-4 text-black stroke-[2.5]" />
+          <div className="inline-flex items-center gap-3 font-medium tracking-tight">
+            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+              <ShieldCheck className="w-4 h-4 stroke-[2.5]" />
             </div>
             <span><strong className="text-white font-semibold">94.8%</strong> SLA resolution compliance rate</span>
           </div>
 
-          <div className="appear-soft inline-flex items-center gap-3 font-medium tracking-tight">
+          <div className="inline-flex items-center gap-3 font-medium tracking-tight">
             <div className="flex -space-x-2 overflow-hidden">
-              <div className="inline-block h-6 w-6 rounded-full bg-neutral-800 ring-2 ring-black flex items-center justify-center text-[10px] text-white">BH1</div>
-              <div className="inline-block h-6 w-6 rounded-full bg-neutral-700 ring-2 ring-black flex items-center justify-center text-[10px] text-white">GH1</div>
-              <div className="inline-block h-6 w-6 rounded-full bg-orange-600 ring-2 ring-black flex items-center justify-center text-[10px] font-bold text-white">M</div>
+              <div className="inline-block h-7 w-7 rounded-full bg-sky-900 ring-2 ring-black flex items-center justify-center text-[10px] text-white">BH1</div>
+              <div className="inline-block h-7 w-7 rounded-full bg-indigo-900 ring-2 ring-black flex items-center justify-center text-[10px] text-white">GH1</div>
+              <div className="inline-block h-7 w-7 rounded-full bg-emerald-700 ring-2 ring-black flex items-center justify-center text-[10px] font-bold text-white">M</div>
             </div>
             <span><strong className="text-white font-semibold">20+</strong> hostel blocks & dining halls active</span>
           </div>
 
         </div>
       </footer>
+
     </div>
   );
 };

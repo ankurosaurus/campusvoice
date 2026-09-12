@@ -5,6 +5,7 @@ import { ComplaintsContext } from '../context/ComplaintsContext';
 import StatusBadge from '../components/StatusBadge';
 import SlaBadge from '../components/SlaBadge';
 import ImageModal from '../components/ImageModal';
+import MessDish3DCanvas from '../components/MessDish3DCanvas';
 import { INITIAL_MENU } from '../data/mockData';
 import { 
   PlusCircle, Utensils, ClipboardList, Calendar, Star, 
@@ -569,25 +570,31 @@ export const StudentDashboard = () => {
       {/* TAB 4: WEEKLY MESS MENU */}
       {activeTab === 'mess-menu' && (
         <div className="bg-neutral-950 border border-neutral-800 rounded-2xl p-6 md:p-8 shadow-2xl">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <div>
-              <h2 className="text-xl font-semibold text-white">Weekly Campus Mess Menu & Live Dish Ratings</h2>
-              <p className="text-xs text-neutral-400">Mess Alpha 7-day dish ratings. Rate any dish below to power live food quality scores.</p>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+            <div className="flex-1">
+              <h2 className="text-xl md:text-2xl font-normal text-white" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                Weekly Campus Mess Menu & Live 3D Dish Quality
+              </h2>
+              <p className="text-xs text-neutral-400 mt-1">Mess Alpha 7-day meal ratings. Rate dishes below to power live dining scorecards.</p>
+
+              {/* Day Selector */}
+              <div className="flex flex-wrap gap-1 bg-neutral-900 p-1 rounded-xl border border-neutral-800 mt-4">
+                {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
+                  <button
+                    key={day}
+                    onClick={() => setSelectedDay(day)}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                      selectedDay === day ? 'bg-white text-black font-bold shadow-lg' : 'text-neutral-400 hover:text-white'
+                    }`}
+                  >
+                    {day}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* Day Selector */}
-            <div className="flex flex-wrap gap-1 bg-neutral-900 p-1 rounded-xl border border-neutral-800">
-              {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
-                <button
-                  key={day}
-                  onClick={() => setSelectedDay(day)}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-medium transition-all ${
-                    selectedDay === day ? 'bg-white text-black font-bold shadow-lg' : 'text-neutral-400 hover:text-white'
-                  }`}
-                >
-                  {day}
-                </button>
-              ))}
+            <div className="w-full md:w-56 shrink-0 flex justify-center">
+              <MessDish3DCanvas />
             </div>
           </div>
 

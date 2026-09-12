@@ -11,6 +11,7 @@ import StudentDashboard from './pages/StudentDashboard';
 import StaffDashboard from './pages/StaffDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import TransparencyDashboard from './pages/TransparencyDashboard';
+import AIChatbotWidget from './components/AIChatbotWidget';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useContext(AuthContext);
@@ -34,7 +35,7 @@ export function App() {
       <SocketProvider>
         <ComplaintsProvider>
           <Router>
-            <div className="min-h-screen bg-black text-white flex flex-col font-sans selection:bg-neutral-800 selection:text-white">
+            <div className="min-h-screen bg-[hsl(201,100%,13%)] text-white flex flex-col font-sans selection:bg-sky-900 selection:text-white">
               <Navbar />
               <div className="flex-1">
                 <Routes>
@@ -73,6 +74,7 @@ export function App() {
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </div>
+              <AIChatbotWidget />
             </div>
           </Router>
         </ComplaintsProvider>

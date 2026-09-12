@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ShieldCheck, Clock, CheckCircle2, Building, Flame, Activity, Lock } from 'lucide-react';
-
+import Shield3DCanvas from '../components/Shield3DCanvas';
 import { INITIAL_TRANSPARENCY_METRICS } from '../data/mockData';
 
 export const TransparencyDashboard = () => {
@@ -26,24 +26,30 @@ export const TransparencyDashboard = () => {
   }, []);
 
   if (loading) {
-    return <div className="min-h-screen bg-black text-white p-12 text-center text-neutral-500">Loading Public Campus Trust Data...</div>;
+    return <div className="min-h-screen bg-[hsl(201,100%,13%)] text-white p-12 text-center text-neutral-500">Loading Public Campus Trust Data...</div>;
   }
 
   const { overallResolutionRatePercent, avgResponseTimeHours, blockMetrics, recentResolutions } = metrics;
 
   return (
-    <div className="min-h-screen bg-black text-white p-4 md:p-8 max-w-7xl mx-auto space-y-8">
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400 text-xs font-semibold">
-          <ShieldCheck className="w-4 h-4" /> Live Public Transparency Layer
+    <div className="min-h-screen bg-[hsl(201,100%,13%)] text-white p-4 md:p-8 max-w-7xl mx-auto space-y-8">
+      {/* Header with 3D Shield */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto liquid-glass rounded-3xl p-6 shadow-2xl border border-white/10">
+        <div className="space-y-3 text-left flex-1">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
+            <ShieldCheck className="w-4 h-4" /> Live Public Transparency Layer
+          </div>
+          <h1 className="text-3xl md:text-5xl font-normal tracking-tight text-white" style={{ fontFamily: "'Instrument Serif', serif" }}>
+            Real-Time Resolution & Trust Metrics
+          </h1>
+          <p className="text-sm text-neutral-300 leading-relaxed">
+            Open student visibility into hostel block & dining operations performance. Updated continuously to enforce accountability.
+          </p>
         </div>
-        <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-white">
-          Real-Time Resolution & Trust Metrics
-        </h1>
-        <p className="text-sm text-neutral-400">
-          Open student visibility into hostel block & dining operations performance. Updated continuously to ensure accountability.
-        </p>
+
+        <div className="w-full md:w-64 shrink-0 flex justify-center">
+          <Shield3DCanvas />
+        </div>
       </div>
 
       {/* Top 2 Global Stat Cards */}
